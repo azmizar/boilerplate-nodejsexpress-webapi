@@ -18,6 +18,7 @@ Plugin Name | npm i --save | Description | Links
  Joi | joi | JSON schema validator | [NPM](https://www.npmjs.com/package/joi)
  Schema Object | schema-object | JSON schema definition | [NPM](https://www.npmjs.com/package/schema-object)
  Loadash | loadash | Miscs JS library | [NPM](https://www.npmjs.com/package/loadash) \| [WebSite](https://lodash.com/)
+ Split | split | String split library | [NPM](https://www.npmjs.com/package/split)
  ExpressJS | express | WebAPI library | [NPM](https://www.npmjs.com/package/express) \| [WebSite](https://expressjs.com/)
  CORS | cors | Cross-origin resource sharing library | [NPM](https://www.npmjs.com/package/cors)
  Morgan | morgan | ExpressJS logging facility | [NPM](https://www.npmjs.com/package/morgan)
