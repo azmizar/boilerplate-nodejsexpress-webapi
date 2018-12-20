@@ -22,5 +22,24 @@
   "bugs": {
     "url": "https://github.com/azmizar/boilerplate-nodejsexpress-webapi/issues"
   },
-  "homepage": "https://github.com/azmizar/boilerplate-nodejsexpress-webapi#readme"
+  "homepage": "https://github.com/azmizar/boilerplate-nodejsexpress-webapi#readme",
+  "dependencies": {
+    "cookie-parser": "^1.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^6.2.0",
+    "ejs": "^2.6.1",
+    "express": "^4.16.4",
+    "joi": "^14.3.0",
+    "jsonwebtoken": "^8.4.0",
+    "loadash": "^1.0.0",
+    "moment": "^2.23.0",
+    "moment-timezone": "^0.5.23",
+    "morgan": "^1.9.1",
+    "object-mapper": "^5.0.0",
+    "request": "^2.88.0",
+    "request-promise": "^4.2.2",
+    "schema-object": "^4.0.11",
+    "uuid": "^3.3.2",
+    "winston": "^3.1.0"
+  }
 }
