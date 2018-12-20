@@ -1,0 +1,26 @@
+{
+  "name": "boilerplate-nodejsexpress-webapi",
+  "version": "0.0.1-alpha",
+  "description": "NodeJS/Express Project Template",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/azmizar/boilerplate-nodejsexpress-webapi.git"
+  },
+  "keywords": [
+    "NodeJS",
+    "ExpressJS",
+    "Boilerplate",
+    "Template",
+    "Standard"
+  ],
+  "author": "Azmizar Ujang",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/azmizar/boilerplate-nodejsexpress-webapi/issues"
+  },
+  "homepage": "https://github.com/azmizar/boilerplate-nodejsexpress-webapi#readme"
+}
