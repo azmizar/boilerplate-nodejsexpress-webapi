@@ -27,8 +27,8 @@ Plugin Name | npm i --save | Description | Links
 
 ### Development
 
-Plugin Name | npm i --savedev | Description
----------|----------|---------
- Nodemon | B1 | C1
- A2 | B2 | C2
+Plugin Name | npm i --savedev | Description | Links
+---------|----------|---------|---------
+ Nodemon | nodemon | NodeJS - watch and auto-restart node app | [NPM](https://www.npmjs.com/package/nodemon) \| [WebSite](http://nodemon.io/)
+ MochaJS | mocha | JS test framework | [NPM](https://www.npmjs.com/package/mocha) \| [WebSite](https://mochajs.org)
  A3 | B3 | C3
