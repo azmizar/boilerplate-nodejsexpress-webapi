@@ -1,5 +1,10 @@
 'use strict';
 
+/***************************************
+ * Winston logger configurations
+ ***************************************/
+const MODULENAME = 'WinstonLogger';
+
 /***
  * 3rd party imports
  */
@@ -32,14 +37,7 @@ const logger = winston.createLogger({
 if (process.env.NODE_ENV !== 'production') {
   logger.add(
     new winston.transports.Console({
-      format: winston.format.combine(
-        winston.format.colorize(),
-        winston.format.timestamp(),
-        winston.format.align(),
-        winston.format.printf(
-          (info) => `${info.timestamp} ${info.level}: ${info.message}`
-        )
-      ),
+      format: winston.format.combine(winston.format.colorize(), winston.format.timestamp(), winston.format.align(), winston.format.printf((info) => `${info.timestamp} ${info.level}: ${info.message}`)),
       level: 'debug',
       handleExceptions: true,
       json: false,
@@ -82,6 +80,10 @@ module.exports.logWarning = function(uniqueID, moduleName, taskName, msg) {
  * Log error entry
  */
 module.exports.logError = function(uniqueID, moduleName, taskName, o) {
-  logger.error(`[${uniqueID}] [${moduleName}:${taskName}] ${o.message}`);
-  logger.debug(`[${uniqueID}] [${moduleName}:${taskName}] ${o.stackTrace}`);
+  if (o instanceof Error) {
+    logger.error(`[${uniqueID}] [${moduleName}:${taskName}] ${o.message}`);
+    logger.debug(`[${uniqueID}] [${moduleName}:${taskName}] ${o.stack}`);
+  } else {
+    logger.error(`[${uniqueID}] [${moduleName}:${taskName}] ${o}`);
+  }
 };
