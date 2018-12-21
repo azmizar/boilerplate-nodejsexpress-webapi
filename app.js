@@ -18,11 +18,13 @@ const app = express();
 /**
  * App imports
  */
+const CommonIDsSvc = require('./common/ids.service');
 const logger = require('./config/winston.config');
 
 /**
  * Internal variables
  */
+let _serverUniqueID = null;
 const _apiRouter = express.Router();
 
 /**
@@ -32,6 +34,10 @@ function initApp() {
   const taskName = 'initApp()';
 
   try {
+    // create server/instance unique ID
+    _serverUniqueID = CommonIDsSvc.generateUUID();
+    process.env.SERVERUNIQUEID = _serverUniqueID;
+
     // add new token to morgan
     morgan.token('reqUniqueid', function(req) {
       return req.reqUniqueID || '--N/A--';
@@ -46,14 +52,14 @@ function initApp() {
     app.use(express.static(path.join(__dirname, 'public')));
 
     //middlewares
-    //app.use(require('./middlewares/default.middleware'));
+    app.use(require('./middlewares/default.middleware'));
 
     // root route
     let apiRoot = process.env.APIROOT || '';
     let apiVersion = process.env.APIVERSION || 'v1';
 
-    let baseRoute = `/${apiRoot !== '' ? apiRoot : ''}${apiVersion !== '' ? apiVersion : ''}/`;
-    logger.logInfo(process.env.SERVERUNIQUEID, MODULENAME, taskName, `Base route: ${baseRoute}`);
+    let baseRoute = `/${apiRoot !== '' ? apiRoot + '/' : ''}${apiVersion !== '' ? apiVersion : ''}/`;
+    logger.logInfo(_serverUniqueID, MODULENAME, taskName, `Base route: ${baseRoute}`);
 
     app.use(baseRoute, _apiRouter);
 
@@ -61,8 +67,8 @@ function initApp() {
     initCatchAllRoute();
     initErrorRoute();
   } catch (e) {
-    logger.logError(process.env.SERVERUNIQUEID, MODULENAME, taskName, e);
-    logger.logInfo(process.env.SERVERUNIQUEID, MODULENAME, taskName, 'Exiting server due to error during initializing app');
+    logger.logError(_serverUniqueID, MODULENAME, taskName, e);
+    logger.logInfo(_serverUniqueID, MODULENAME, taskName, 'Exiting server due to error during initializing app');
 
     process.exit(1);
   }

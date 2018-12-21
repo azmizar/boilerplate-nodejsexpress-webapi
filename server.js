@@ -18,7 +18,6 @@ const http = require('http');
 /**
  * App imports
  */
-const CommonIDsSvc = require('./common/ids.service');
 const logger = require('./config/winston.config');
 const app = require('./app');
 
@@ -107,8 +106,7 @@ function startServer() {
 
   try {
     // unique ID for this server
-    _serverUniqueID = CommonIDsSvc.generateUUID();
-    process.env.SERVERUNIQUEID = _serverUniqueID;
+    _serverUniqueID = process.env.SERVERUNIQUEID;
 
     // get and set port
     _serverPort = normalizePort(process.env.APIPORT);
