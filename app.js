@@ -20,6 +20,8 @@ const app = express();
  */
 const CommonIDsSvc = require('./common/ids.service');
 const logger = require('./config/winston.config');
+const APIResponseSchema = require('./common-schemas/response.schema');
+const TaskSchema = require('./common-schemas/task.schema');
 
 /**
  * Internal variables
@@ -78,12 +80,21 @@ function initApp() {
  * Initialize default PING
  */
 function initPing() {
-  const taskName = '/ping';
-
   // default ping
   _apiRouter.get('/ping', (req, res) => {
-    logger.logDebug(req.reqUniqueID, MODULENAME, taskName, 'PING');
-    res.status(200).send({ errCode: 0, errMsg: 'Ping-pong' });
+    const taskName = '/ping';
+
+    const resp = new APIResponseSchema();
+    const task = TaskSchema.createTask(MODULENAME, taskName, null);
+
+    resp.setMetaData(req.responseMetaData);
+
+    task.endTask('Health checks');
+
+    resp.endResponse(0, 'Health checks passed', null, task);
+
+    logger.logDebug(req.reqUniqueID, MODULENAME, taskName, 'Health checks');
+    res.status(200).send(resp.toObject());
   });
 }
 
@@ -91,11 +102,16 @@ function initPing() {
  * Initialize catch all route (undefined routes)
  */
 function initCatchAllRoute() {
-  const taskName = 'undefinedroute';
-
   app.all('*', (req, res) => {
-    logger.logDebug(req.reqUniqueID, MODULENAME, taskName, 'PING');
-    res.status(404).send({ errCode: 1, errMsg: 'Resource not found' });
+    const taskName = 'undefinedroute';
+
+    const resp = new APIResponseSchema();
+
+    resp.setMetaData(req.responseMetaData);
+    resp.endResponse(1, 'Route does not exist', null, null);
+
+    logger.logDebug(req.reqUniqueID, MODULENAME, taskName, 'Route does not exist');
+    res.status(404).send(resp.toObject());
   });
 }
 
@@ -103,11 +119,16 @@ function initCatchAllRoute() {
  * Initialize error route
  */
 function initErrorRoute() {
-  const taskName = 'errorroute';
-
   app.use((e, req, res, next) => {
+    const taskName = 'errorroute';
+
+    const resp = new APIResponseSchema();
+
+    resp.setMetaData(req.responseMetaData);
+    resp.endResponse(1, 'Unexpected exception', e, null);
+
     logger.logError(req.reqUniqueID, MODULENAME, taskName, e);
-    res.status(500).send({ errCode: 2, errMsg: `Error: ${e.message}` });
+    res.status(500).send(resp.toObject());
   });
 }
 

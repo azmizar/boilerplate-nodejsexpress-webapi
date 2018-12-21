@@ -8,7 +8,7 @@ const MODULENAME = 'CommonFindService';
 /**
  * 3rd party imports
  */
-const _ = require('loadash');
+const _ = require('lodash');
 
 /**
  * Search for items in the list if it is the same or is part of the item
