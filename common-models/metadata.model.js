@@ -3,7 +3,7 @@
 /***************************************
  * API metadata class
  ***************************************/
-const MODULENAME = 'CommonSchemaMetaData';
+const MODULENAME = 'CommonMetaDataModel';
 
 /**
  * 3rd party imports
@@ -15,11 +15,11 @@ const SchemaObject = require('schema-object');
 /**
  * App imports
  */
-const TaskSchema = require('./task.schema');
+const TaskModel = require('./task.model');
 
 /**
  * Add task into metadata.
- * @param {TaskSchema} task Task to add to this reponse can be TaskSchema or JSON
+ * @param {TaskModel} task Task to add to this reponse can be TaskModel or JSON
  */
 function addTask(task) {
   this.addTasks([task]);
@@ -27,17 +27,17 @@ function addTask(task) {
 
 /**
  * Add tasks into metadata.
- * @param {TaskSchema[]} tasks Tasks to add to this reponse can be TaskSchema or JSON
+ * @param {TaskModel[]} tasks Tasks to add to this reponse can be TaskModel or JSON
  */
 function addTasks(tasks) {
   tasks = tasks || [];
 
   if (tasks && tasks.length > 0) {
     _.forEach(tasks, (value, index, coll) => {
-      if (value instanceof TaskSchema) {
+      if (value instanceof TaskModel) {
         this.tasks.push(value);
       } else {
-        this.tasks.push(new TaskSchema(value));
+        this.tasks.push(new TaskModel(value));
       }
     });
   }
@@ -45,7 +45,7 @@ function addTasks(tasks) {
 
 /**
  * End metadata
- * @param {TaskSchema} task Task to add (if any) can either be singular TaskSchema, TaskSchema array, or JSON
+ * @param {TaskModel} task Task to add (if any) can either be singular TaskModel, TaskModel array, or JSON
  */
 function endMetaData(task) {
   // handle task first
@@ -64,7 +64,7 @@ function endMetaData(task) {
 /**
  * API Response metadata clas
  */
-const APIResponseMetaDataSchema = new SchemaObject(
+const APIResponseMetaDataModel = new SchemaObject(
   {
     serverName: String,
     requestURL: String,
@@ -72,7 +72,7 @@ const APIResponseMetaDataSchema = new SchemaObject(
     requestUUID: String,
     apiBuildVersion: String,
     totalElapsedInMS: Number,
-    tasks: [TaskSchema]
+    tasks: [TaskModel]
   },
   {
     preserveNull: true,
@@ -89,4 +89,4 @@ const APIResponseMetaDataSchema = new SchemaObject(
 /**
  * Export
  */
-module.exports = APIResponseMetaDataSchema;
+module.exports = APIResponseMetaDataModel;

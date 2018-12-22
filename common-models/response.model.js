@@ -3,7 +3,7 @@
 /***************************************
  * API response base class
  ***************************************/
-const MODULENAME = 'CommonSchemaResponse';
+const MODULENAME = 'CommonResponseModel';
 
 /**
  * 3rd party imports
@@ -13,11 +13,11 @@ const SchemaObject = require('schema-object');
 /**
  * App imports
  */
-const APIResponseMetaDataSchema = require('./metadata.schema');
+const APIResponseMetaDataModel = require('./metadata.model');
 
 /**
  * Sets the metadata object
- * @param {*} meta APIResponseMetaDataSchema object
+ * @param {APIResponseMetaDataModel} meta APIResponseMetaDataModel object
  */
 function setMetaData(meta) {
   this.metadata = meta;
@@ -28,7 +28,7 @@ function setMetaData(meta) {
  * @param {Number} respCode Reponse code
  * @param {String} respMsg Response message
  * @param {Object} respDetails Response details (can be Error object or String)
- * @param {TaskSchema} task Task to add (if any) can either be singular TaskSchema, TaskSchema array, or JSON
+ * @param {TaskModel} task Task to add (if any) can either be singular TaskModel, TaskModel array, or JSON
  */
 function endResponse(respCode, respMsg, respDetails, task) {
   // end metadata - since we're ending response
@@ -54,9 +54,9 @@ function endResponse(respCode, respMsg, respDetails, task) {
 /**
  * API Response base class
  */
-const APIResponseSchema = new SchemaObject(
+const APIResponseModel = new SchemaObject(
   {
-    metadata: APIResponseMetaDataSchema,
+    metadata: APIResponseMetaDataModel,
     respCode: String,
     respMessage: String,
     respDetails: String
@@ -75,4 +75,4 @@ const APIResponseSchema = new SchemaObject(
 /**
  * Export
  */
-module.exports = APIResponseSchema;
+module.exports = APIResponseModel;

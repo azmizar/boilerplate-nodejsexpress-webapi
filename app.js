@@ -20,8 +20,8 @@ const app = express();
  */
 const CommonIDsSvc = require('./common/ids.service');
 const logger = require('./config/winston.config');
-const APIResponseSchema = require('./common-schemas/response.schema');
-const TaskSchema = require('./common-schemas/task.schema');
+const APIResponseModel = require('./common-models/response.model');
+const TaskModel = require('./common-models/task.model');
 
 /**
  * Internal variables
@@ -84,8 +84,8 @@ function initPing() {
   _apiRouter.get('/ping', (req, res) => {
     const taskName = '/ping';
 
-    const resp = new APIResponseSchema();
-    const task = TaskSchema.createTask(MODULENAME, taskName, null);
+    const resp = new APIResponseModel();
+    const task = TaskModel.createTask(MODULENAME, taskName, null);
 
     resp.setMetaData(req.responseMetaData);
 
@@ -105,7 +105,7 @@ function initCatchAllRoute() {
   app.all('*', (req, res) => {
     const taskName = 'undefinedroute';
 
-    const resp = new APIResponseSchema();
+    const resp = new APIResponseModel();
 
     resp.setMetaData(req.responseMetaData);
     resp.endResponse(1, 'Route does not exist', null, null);
@@ -122,7 +122,7 @@ function initErrorRoute() {
   app.use((e, req, res, next) => {
     const taskName = 'errorroute';
 
-    const resp = new APIResponseSchema();
+    const resp = new APIResponseModel();
 
     resp.setMetaData(req.responseMetaData);
     resp.endResponse(1, 'Unexpected exception', e, null);

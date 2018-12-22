@@ -14,11 +14,11 @@ const moment = require('moment');
  * App imports
  */
 const CommonIDsSvc = require('../common/ids.service');
-const APIResponseMetaDataSchema = require('../common-schemas/metadata.schema');
+const APIResponseMetaDataModel = require('../common-models/metadata.model');
 const logger = require('../config/winston.config');
 
 /**
- *
+ * HTTP middleware to handle initializing request execution
  * @param {*} req Express HTTP request object
  * @param {*} res Express HTTP response object
  * @param {*} next Express HTTP pipeline function
@@ -36,7 +36,7 @@ module.exports = function(req, res, next) {
     logger.logDebug(callGUID, MODULENAME, taskName, req.path);
 
     // response metadata schema
-    const meta = new APIResponseMetaDataSchema();
+    const meta = new APIResponseMetaDataModel();
 
     meta.requestUUID = callGUID;
     meta.serverName = process.env.NODE_ENV === 'development' ? CommonIDsSvc.serverName : CommonIDsSvc.serverNameHash;

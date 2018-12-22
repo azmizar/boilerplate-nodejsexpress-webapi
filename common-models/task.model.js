@@ -3,7 +3,7 @@
 /***************************************
  * Task class
  ***************************************/
-const MODULENAME = 'CommonSchemaTask';
+const MODULENAME = 'CommonTaskModel';
 
 /**
  * 3rd party imports
