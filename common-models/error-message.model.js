@@ -15,7 +15,22 @@ const SchemaObject = require('schema-object');
 /**
  * ErrorMessage Class
  */
-const ErrorMessageModel = new SchemaObject({}, {});
+const ErrorMessageModel = new SchemaObject(
+  {
+    errorNumber: Number,
+    errorMessage: String,
+    errorDetails: String,
+    errorLevel: { type: String, enum: ['INFO', 'WARNING', 'ERROR', 'CRITICALERROR'], default: 'ERROR' },
+    category: String,
+    subCategory: String,
+    canOverrideMessage: Boolean
+  },
+  {
+    preserveNull: true,
+    strict: true,
+    keysIgnoreCase: true
+  }
+);
 
 /**
  * Export

@@ -14,3 +14,11 @@ const _ = require('lodash');
  * App imports
  */
 const logger = require('../config/winston.config');
+
+function getErrorInformation(errCode, errMsg, errDesc) {}
+
+function getErrorInformationFromError(errCode, err) {}
+
+/**
+ * Service definition
+ */

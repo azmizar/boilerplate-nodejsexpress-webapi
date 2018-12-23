@@ -3,7 +3,7 @@
 /***************************************
  * Winston logger configurations
  ***************************************/
-const MODULENAME = 'WinstonLogger';
+const MODULENAME = 'ConfigWinstonLogger';
 
 /***
  * 3rd party imports
