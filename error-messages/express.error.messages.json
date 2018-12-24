@@ -1,0 +1,11 @@
+[
+  {
+    "errorNumber": 100,
+    "errorMessage": "Resource not found",
+    "errorDetails": "Requested endpoint does not exist",
+    "category": "EXPRESSJS",
+    "subcategory": "GENERAL",
+    "errorLevel": "ERROR",
+    "canOverrideMessage": false
+  }
+]

@@ -5,4 +5,17 @@
  ***************************************/
 const MODULENAME = 'ConfigErrorMessages';
 
-const ErrorConfigurations = [{ category: '', subCategory: '', errorFile: '' }];
+/**
+ * Files to load error messages from
+ */
+const ErrorConfigurations = [
+  { "file": './error-messages/general.error.messages.json', "description": 'General error messages' },
+  { "file": './error-messages/express.error.messages.json', "description": 'Express related error messages' }
+];
+
+/**
+ * Export
+ */
+module.exports = ErrorConfigurations;
+
+

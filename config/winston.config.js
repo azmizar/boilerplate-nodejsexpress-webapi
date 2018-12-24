@@ -31,13 +31,14 @@ const logger = winston.createLogger({
   exitOnError: false
 });
 
+
 /**
  * Avoid console logger in production
  */
 if (process.env.NODE_ENV !== 'production') {
   logger.add(
     new winston.transports.Console({
-      format: winston.format.combine(winston.format.colorize(), winston.format.timestamp(), winston.format.align(), winston.format.printf((info) => `${info.timestamp} ${info.level}: ${info.message}`)),
+      format: winston.format.combine(winston.format.colorize(), winston.format.timestamp(), winston.format.align(), winston.format.printf((info) => `${info.timestamp} ${info.level}:\t${info.message}`)),
       level: 'debug',
       handleExceptions: true,
       json: false,

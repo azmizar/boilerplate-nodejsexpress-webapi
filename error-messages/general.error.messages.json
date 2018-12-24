@@ -1,1 +1,20 @@
-[{ "errorNumber": 0, "errorMessage": "OK", "errorDescription": "Operation successful", "canOverride": false }]
+[
+  {
+    "errorNumber": 0,
+    "errorMessage": "OK",
+    "errorDetails": "Operation successful",
+    "category": "GENERAL",
+    "subcategory": "GENERAL",
+    "errorLevel": "INFO",
+    "canOverrideMessage": true
+  },
+  {
+    "errorNumber": 1,
+    "errorMessage": "Unhandled exception",
+    "errorDetails": "Expected exception occurred while processing request",
+    "category": "GENERAL",
+    "subcategory": "GENERAL",
+    "errorLevel": "ERROR",
+    "canOverrideMessage": false
+  }
+]

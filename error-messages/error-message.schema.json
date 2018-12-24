@@ -1,0 +1,55 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "array",
+  "items": {
+    "$ref": "#/definitions/error-message-schema"
+  },
+  "description": "This schema must be the same as ./common-models/error-message.model.js",
+  "definitions": {
+    "error-message-schema": {
+      "properties": {
+        "errorNumber": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Error number"
+        },
+        "errorMessage": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Brief error message that is usable for end-user to understand"
+        },
+        "errorDetails": {
+          "type": "string",
+          "description": "Details error message mainly used to explain usage or what to check for"
+        },
+        "errorLevel": {
+          "enum": [
+            "INFO", 
+            "WARNING", 
+            "ERROR", 
+            "CRITICALERROR"
+          ],
+          "default": "ERROR",
+          "description": "Error level to indicate severity of this error"
+        },
+        "category": {
+          "type": "string",
+          "minLength": 1
+        },
+        "subcategory": {
+          "type": "string",
+          "minLength": 1
+        },
+        "canOverrideMessage": {
+          "type": "boolean",
+          "default": false
+        }
+      },
+      "required": [
+        "errorNumber",
+        "errorMessage",
+        "category"
+      ]
+    }
+  }
+}

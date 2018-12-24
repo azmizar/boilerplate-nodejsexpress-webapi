@@ -26,6 +26,7 @@ const logger = require('../config/winston.config');
  */
 let _serverName = null;
 let _serverNameHash = null;
+let _instanceUUID = null;
 
 /**
  * Generates UUID (v4)
@@ -41,6 +42,10 @@ function init() {
   const taskName = 'init()';
 
   try {
+    // instance UUID
+    _instanceUUID = generateUUID();
+    process.env.SERVERUNIQUEID = _instanceUUID;
+
     // get server name and hash it as well
     _serverName = os.hostname();
 
@@ -61,7 +66,8 @@ init();
 const CommonIDsService = {
   generateUUID: generateUUID,
   serverName: _serverName,
-  serverNameHash: _serverNameHash
+  serverNameHash: _serverNameHash,
+  instanceUUID: _instanceUUID
 };
 
 /**

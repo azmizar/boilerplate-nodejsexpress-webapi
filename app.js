@@ -17,11 +17,16 @@ const app = express();
 
 /**
  * App imports
+ * Note: ./common/ids.service MUST be the first script to be loaded for App because it contains IDs that are used by ALL other modules
  */
-const CommonIDsSvc = require('./common/ids.service');
+const CommonIDsSvc = require('./common/ids.service'); 
+const ErrorMsgsSvc = require('./common/error-messages.service');
 const logger = require('./config/winston.config');
+
 const APIResponseModel = require('./common-models/response.model');
 const TaskModel = require('./common-models/task.model');
+
+const AppError = require('./common/apperror.class');
 
 /**
  * Internal variables
@@ -37,8 +42,7 @@ function initApp() {
 
   try {
     // create server/instance unique ID
-    _serverUniqueID = CommonIDsSvc.generateUUID();
-    process.env.SERVERUNIQUEID = _serverUniqueID;
+    _serverUniqueID = process.env.SERVERUNIQUEID;
 
     // add new token to morgan
     morgan.token('reqUniqueid', function(req) {
