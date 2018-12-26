@@ -30,7 +30,7 @@ const logger = require('../config/winston.config');
 /**
  * Internal variables
  */
-const _errorMessages = [];
+let _errorMessages = [];
 
 /**
  * Loads errors into one array
@@ -67,7 +67,12 @@ function loadErrors() {
 // load errors
 loadErrors();
 
-
+/**
+ * Gets error information based on error number
+ * @param {Number} errNum Error number
+ * @param {String} errMsg Error message
+ * @param {String} errDetails ErrorDetails
+ */
 function getErrorInformation(errNum, errMsg, errDetails) {
   try {
     // find errInfo based on error number
@@ -119,7 +124,14 @@ function getErrorInformation(errNum, errMsg, errDetails) {
   }
 }
 
-function getErrorInformationFromError(errNum, err) {}
+/**
+ * Get error information based on error number and Error object
+ * @param {Number} errNum Error number
+ * @param {Error} err Error object (error message and stack trace will be used as message and details respectively)
+ */
+function getErrorInformationFromError(errNum, err) {
+  return getErrorInformation(errNum, err.message, err.stack);
+}
 
 /**
  * Service definition

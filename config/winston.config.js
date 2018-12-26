@@ -5,11 +5,38 @@
  ***************************************/
 const MODULENAME = 'ConfigWinstonLogger';
 
+/**
+ * NodeJS imports
+ */
+const path = require('path');
+const fs = require('fs');
+
 /***
  * 3rd party imports
  */
 const winston = require('winston');
 const split = require('split');
+
+/**
+ * Init log folder
+ */
+function initLog() {
+  const taskName = 'initLog()';
+
+  try {
+    // get dir from log file path
+    let logDir = path.dirname(process.env.ALLLOGFILE);
+
+    console.log(`[${ process.env.SERVERUNIQUEID }] [${ MODULENAME }:${ taskName }] Creating log folder ${ logDir }`);
+    fs.mkdirSync(logDir, { "recursive": true });
+  } catch (e) {
+    // at this time winston has not been initialize - so just use console()
+    console.log(`[${ process.env.SERVERUNIQUEID }] [${ MODULENAME }:${ taskName }] ${ e.message }`);
+  }
+}
+
+// initialize log
+initLog();
 
 /**
  * Create default logger that will handle all
@@ -31,7 +58,6 @@ const logger = winston.createLogger({
   exitOnError: false
 });
 
-
 /**
  * Avoid console logger in production
  */
@@ -47,6 +73,9 @@ if (process.env.NODE_ENV !== 'production') {
   );
 }
 
+/**
+ * Export (must define export of logger here first before adding more functions below)
+ */
 module.exports = logger;
 
 /**
