@@ -4,16 +4,25 @@
     "errorMessage": "OK",
     "errorDetails": "Operation successful",
     "category": "GENERAL",
-    "subcategory": "GENERAL",
+    "subcategory": "RESERVED",
     "errorLevel": "INFO",
     "canOverrideMessage": true
   },
   {
     "errorNumber": 1,
+    "errorMessage": "Error number not found",
+    "errorDetails": "Error number does not exist",
+    "category": "GENERAL",
+    "subcategory": "RESERVED",
+    "errorLevel": "ERROR",
+    "canOverrideMessage": true
+  },
+  {
+    "errorNumber": 2,
     "errorMessage": "Unhandled exception",
     "errorDetails": "Expected exception occurred while processing request",
     "category": "GENERAL",
-    "subcategory": "GENERAL",
+    "subcategory": "RESERVED",
     "errorLevel": "ERROR",
     "canOverrideMessage": false
   }

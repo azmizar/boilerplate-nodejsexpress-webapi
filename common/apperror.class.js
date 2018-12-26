@@ -17,6 +17,20 @@ class AppError extends Error {
   constructor (...args) {
     super(...args);
     Error.captureStackTrace(this, AppError);
+
+    this._appError = null;
+  }
+
+  /**
+   * Gets/sets applcation error information
+   * @param {ErrorMessageModel} appErrorInfo Application error message
+   */
+  appError(appErrorInfo) {
+    if (typeof (appErrorInfo) !== 'undefined') {
+      this._appError = appErrorInfo;
+    }
+
+    return this._appError;
   }
 }
 
