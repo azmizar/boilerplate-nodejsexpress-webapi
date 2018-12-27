@@ -53,11 +53,11 @@ Plugin Name | npm i --savedev | Description | Links
 
 ### Standard Practices
 
-* Comments
-* File content structure
-* Import variable name format
-* Error messages service
-* Error handling
+* [Comments](./docs/comments.md)
+* [File content structure](./docs/file-content-structure.md)
+* [Import variable name format](import-variable-names.md)
+* [Error messages service](error-messages.md)
+* [Error handling](error-handling.md)
 
 ### Project Structure
 
