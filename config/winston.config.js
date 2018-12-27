@@ -6,6 +6,12 @@
 const MODULENAME = 'ConfigWinstonLogger';
 
 /**
+ * Startup script
+ */
+require('module-alias/register');
+require('@root/config/paths-alias.config');
+
+/**
  * NodeJS imports
  */
 const path = require('path');
@@ -14,6 +20,7 @@ const fs = require('fs');
 /***
  * 3rd party imports
  */
+const pathAlias = require('path-alias');
 const winston = require('winston');
 const split = require('split');
 
@@ -25,13 +32,13 @@ function initLog() {
 
   try {
     // get dir from log file path
-    let logDir = path.dirname(process.env.ALLLOGFILE);
+    let logDir = path.dirname(pathAlias.resolve(process.env.ALLLOGFILE));
 
-    console.log(`[${ process.env.SERVERUNIQUEID }] [${ MODULENAME }:${ taskName }] Creating log folder ${ logDir }`);
+    console.log(`[${ MODULENAME }:${ taskName }] Creating log folder ${ logDir }`);
     fs.mkdirSync(logDir, { "recursive": true });
   } catch (e) {
     // at this time winston has not been initialize - so just use console()
-    console.log(`[${ process.env.SERVERUNIQUEID }] [${ MODULENAME }:${ taskName }] ${ e.message }`);
+    console.log(`[${ MODULENAME }:${ taskName }] ${ e.message }`);
   }
 }
 
@@ -47,7 +54,7 @@ const logger = winston.createLogger({
   transports: [
     new winston.transports.File({
       level: 'info',
-      filename: process.env.ALLLOGFILE,
+      filename: pathAlias.resolve(process.env.ALLLOGFILE),
       handleExceptions: true,
       json: true,
       maxsize: 5242880, //5MB

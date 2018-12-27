@@ -6,6 +6,12 @@
 const MODULENAME = 'DefaultMiddleware';
 
 /**
+ * Startup script
+ */
+require('module-alias/register');
+require('@root/config/paths-alias.config');
+
+/**
  * 3rd Party imports
  */
 const moment = require('moment');
@@ -13,9 +19,9 @@ const moment = require('moment');
 /**
  * App imports
  */
-const CommonIDsSvc = require('../common/ids.service');
-const APIResponseMetaDataModel = require('../common-models/metadata.model');
-const logger = require('../config/winston.config');
+const CommonIDsSvc = require('@root/common/ids.service');
+const APIResponseMetaDataModel = require('@root/common-models/metadata.model');
+const logger = require('@root/config/winston.config');
 
 /**
  * HTTP middleware to handle initializing request execution

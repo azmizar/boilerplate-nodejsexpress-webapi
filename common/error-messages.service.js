@@ -6,6 +6,12 @@
 const MODULENAME = 'CommonErrorMessageService';
 
 /**
+ * Startup script
+ */
+require('module-alias/register');
+require('@root/config/paths-alias.config');
+
+/**
  * Node imports
  */
 const fs = require('fs');
@@ -18,14 +24,14 @@ const _ = require('lodash');
 /**
  * App imports
  */
-const ErrorFiles = require('../config/error-messsages.config');
-const ErrorMessageModel = require('../common-models/error-message.model');
+const ErrorFiles = require('@root/config/error-messsages.config');
+const ErrorMessageModel = require('@root/common-models/error-message.model');
 const AppError = require('./apperror.class');
 
 /**
  * App imports
  */
-const logger = require('../config/winston.config');
+const logger = require('@root/config/winston.config');
 
 /**
  * Internal variables

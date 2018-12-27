@@ -6,10 +6,14 @@
 const MODULENAME = 'StartupServer';
 
 /**
- * Startup modules
+ * Startup script
  */
 require('module-alias/register');
-require('dotenv').config({ path: './config/.env' });
+require('@root/config/paths-alias.config');
+
+// exception for pathAlias since we need it to reolve config
+const pathAlias = require('path-alias');
+require('dotenv').config({ path: pathAlias.resolve('config/.env') });
 
 /**
  * NodeJS imports
@@ -126,7 +130,8 @@ function startServer() {
   }
 }
 
-if (require.main === 'module') {
+// conditional start so that we can expose functionality for mocha to call
+if (require.main === module) {
   // Start the server
   startServer();
 } else {

@@ -6,6 +6,12 @@
 const MODULENAME = 'CommonIDsService';
 
 /**
+ * Startup script
+ */
+require('module-alias/register');
+require('@root/config/paths-alias.config');
+
+/**
  * NodeJS imports
  */
 const os = require('os');
@@ -19,7 +25,7 @@ const uuidv4 = require('uuid/v4');
 /**
  * App imports
  */
-const logger = require('../config/winston.config');
+const logger = require('@root/config/winston.config');
 
 /**
  * Internal variables

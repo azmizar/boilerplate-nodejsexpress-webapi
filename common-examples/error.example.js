@@ -6,10 +6,10 @@
 const MODULENAME = 'ExampleErrorHandling';
 
 /**
- * Startup
+ * Startup script
  */
 require('module-alias/register');
-require('@root/config/paths-alias.config.js');
+require('@root/config/paths-alias.config');
 
 const pathAlias = require('path-alias');
 require('dotenv').config({ path: pathAlias.resolve('config/.env') });

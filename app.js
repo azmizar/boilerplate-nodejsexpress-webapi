@@ -6,8 +6,15 @@
 const MODULENAME = 'StartupApp';
 
 /**
+ * Startup script
+ */
+require('module-alias/register');
+require('@root/config/paths-alias.config');
+
+/**
  * 3rd party imports
  */
+const pathAlias = require('path-alias');
 const express = require('express');
 const morgan = require('morgan');
 const cors = require('cors');
@@ -19,14 +26,14 @@ const app = express();
  * App imports
  * Note: ./common/ids.service MUST be the first script to be loaded for App because it contains IDs that are used by ALL other modules
  */
-const CommonIDsSvc = require('./common/ids.service'); 
-const ErrorMsgsSvc = require('./common/error-messages.service');
-const logger = require('./config/winston.config');
+const CommonIDsSvc = require('@root/common/ids.service'); 
+const ErrorMsgsSvc = require('@root/common/error-messages.service');
+const logger = require('@root/config/winston.config');
 
-const APIResponseModel = require('./common-models/response.model');
-const TaskModel = require('./common-models/task.model');
+const APIResponseModel = require('@root/common-models/response.model');
+const TaskModel = require('@root/common-models/task.model');
 
-const AppError = require('./common/apperror.class');
+const AppError = require('@root/common/apperror.class');
 
 /**
  * Internal variables
