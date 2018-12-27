@@ -6,16 +6,20 @@
 const MODULENAME = 'ExampleErrorHandling';
 
 /**
- * Load .env
+ * Startup
  */
-require('dotenv').config({ path: './config/.env' });
+require('module-alias/register');
+require('@root/config/paths-alias.config.js');
+
+const pathAlias = require('path-alias');
+require('dotenv').config({ path: pathAlias.resolve('config/.env') });
 
 /**
  * App imports
  */
-const CommonIDsSvc = require('../common/ids.service'); 
-const AppError = require('../common/apperror.class');
-const ErrorMessageSvc = require('../common/error-messages.service');
+const CommonIDsSvc = require('@root/common/ids.service'); 
+const AppError = require('@root/common/apperror.class');
+const ErrorMessageSvc = require('@root/common/error-messages.service');
 
 /**
  * Function A

@@ -6,8 +6,9 @@
 const MODULENAME = 'StartupServer';
 
 /**
- * Load .env
+ * Startup modules
  */
+require('module-alias/register');
 require('dotenv').config({ path: './config/.env' });
 
 /**
@@ -18,8 +19,8 @@ const http = require('http');
 /**
  * App imports
  */
-const logger = require('./config/winston.config');
-const app = require('./app');
+const logger = require('@root/config/winston.config');
+const app = require('@root/app');
 
 /**
  * Internal variables
@@ -110,7 +111,7 @@ function startServer() {
 
     // get and set port
     _serverPort = normalizePort(process.env.APIPORT);
-    app.set('sort', _serverPort);
+    app.set('port', _serverPort);
 
     // create server
     _server = http.createServer(app);
@@ -125,5 +126,17 @@ function startServer() {
   }
 }
 
-// Start the server
-startServer();
+if (require.main === 'module') {
+  // Start the server
+  startServer();
+} else {
+  // server is being invoke as module (ex: from mocha)
+  module.exports.start = startServer;
+
+  module.exports.shutdown = () => { 
+    _server.close();
+  };
+
+  module.exports.port = app.get('port');
+}
+

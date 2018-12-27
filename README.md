@@ -7,6 +7,7 @@
 Plugin Name | npm i --save | Description | Links
 ---------|----------|---------|---------
  DotEnv | dotenv | Loads `.env` into `process.env` | [NPM](https://www.npmjs.com/package/dotenv)
+ ModuleAlias | module-alias | Register aliases of directories and custom module paths in Node | [NPM](https://www.npmjs.com/package/module-alias)
  UUID | uuid | Generation of RFC4122 UUIDS | [NPM](https://www.npmjs.com/package/uuid)
  Winston | winston | Universal logging | [NPM](https://www.npmjs.com/package/winston)
  MomentJS | moment | Date and time library | [NPM](https://www.npmjs.com/package/moment) \| [WebSite](https://momentjs.com/)
@@ -32,7 +33,8 @@ Plugin Name | npm i --savedev | Description | Links
 ---------|----------|---------|---------
  Nodemon | nodemon | NodeJS - watch and auto-restart node app | [NPM](https://www.npmjs.com/package/nodemon) \| [WebSite](http://nodemon.io/)
  MochaJS | mocha | JS test framework | [NPM](https://www.npmjs.com/package/mocha) \| [WebSite](https://mochajs.org)
- A3 | B3 | C3
+ Expect.JS | expect.js | Minimalistic BDD assertion toolkit based on should.js | [NPM](https://www.npmjs.com/package/expect.js)
+ SuperAgent | superagent | SuperAgent is a small progressive client-side and Node.js HTTP request librar | [NPM](https://www.npmjs.com/package/superagent)
 
 ## Standard Operating Procedures (SOP)
 
