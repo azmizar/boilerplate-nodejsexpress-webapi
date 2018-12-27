@@ -53,12 +53,14 @@ const logger = winston.createLogger({
   format: winston.format.json(),
   transports: [
     new winston.transports.File({
+      name: 'alllogs',
       level: 'info',
       filename: pathAlias.resolve(process.env.ALLLOGFILE),
       handleExceptions: true,
       json: true,
       maxsize: 5242880, //5MB
       maxFiles: 5,
+      maxRetries: 10,
       colorize: false
     })
   ],
@@ -71,6 +73,7 @@ const logger = winston.createLogger({
 if (process.env.NODE_ENV !== 'production') {
   logger.add(
     new winston.transports.Console({
+      name: 'console',
       format: winston.format.combine(winston.format.colorize(), winston.format.timestamp(), winston.format.align(), winston.format.printf((info) => `${info.timestamp} ${info.level}:\t${info.message}`)),
       level: 'debug',
       handleExceptions: true,

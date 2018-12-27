@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "devpcmode": "nodemon server.js DEVPCMODE",
-    "test": "mocha --recursive ./tests"
+    "test": "mocha --recursive './{,!(node_modules)/**}/*.test.js'"
   },
   "repository": {
     "type": "git",
@@ -53,6 +53,7 @@
     "expect.js": "^0.3.1",
     "mocha": "^5.2.0",
     "nodemon": "^1.18.9",
+    "read-last-line": "^1.1.0",
     "superagent": "^4.1.0"
   }
 }
