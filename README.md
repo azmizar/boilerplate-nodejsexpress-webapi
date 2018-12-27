@@ -33,3 +33,50 @@ Plugin Name | npm i --savedev | Description | Links
  Nodemon | nodemon | NodeJS - watch and auto-restart node app | [NPM](https://www.npmjs.com/package/nodemon) \| [WebSite](http://nodemon.io/)
  MochaJS | mocha | JS test framework | [NPM](https://www.npmjs.com/package/mocha) \| [WebSite](https://mochajs.org)
  A3 | B3 | C3
+
+## Standard Operating Procedures (SOP)
+
+### Using Boilerplate
+
+* Get MASTER archive `https://github.com/azmizar/boilerplate-nodejsexpress-webapi/archive/master.zip`
+* Unzip to a new project folder
+* If project folder is not yet set to a GIT repo
+  * Go into the project folder using CMD, GIT BASH, or Powershell
+  * `git init` to initialize GIT local repo
+  * `git add .` to stage all files
+  * `git commit -m "Initialized from boilerplate"` to commit all files
+  * `git remote add origin $remote_repo$` to set the PUSH and FETCH remote repo
+  * `git pull` to get remote repo branch (will see error with tracking information)
+  * `git branch --set-upstream-to=origin/master master` to track current branch to remote
+  * `git push -f` to force update remote repo
+* If project folder is already a GIT repo, then just commit the changes
+
+### Standard Practices
+
+* Comments
+* File content structure
+* Import variable name format
+* Error messages service
+* Error handling
+
+### Project Structure
+
+* `common` contains shared scripts, modules, classes, services, etc for the entire app to use
+* `common-models` contains shared models for entire app to use
+* `common-error-messages` contains error message definitions for entire app
+* `common-examples` contains simple examples
+* `config` contains configuration files and services
+* `docs` contains documentation
+* `logs` is the default logs folder (can be modified in .ENV)
+* `middlewares` contains shared Express middlewares
+* `public` contains static files
+
+### App Modules
+
+* Endpoints should be bundled as modules
+* Take an example of API to manipulate file systems
+  * 2 modules, paths and files to work on paths and files respectively
+  * Folder name for app module is recommended to be prefix with `app-`
+    * Ex: `app-paths` and `app-files`
+* All module related files should be contained within the module folder
+* Anything that need to be shared should be in `common-` folder or in `common` folder if it is shared for entire app
