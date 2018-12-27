@@ -19,12 +19,12 @@ const expect = require('expect.js');
 /**
  * App imports
  */
-const start = require('./server').start;
-const shutdown = require('./server').shutdown;
-const port = require('./server').port;
-const logger = require('./config/winston.config');
+const start = require('../server').start;
+const shutdown = require('../server').shutdown;
+const port = require('../server').port;
+const logger = require('../config/winston.config');
 
-describe('Run the server', () => { 
+describe('Testing API server', () => { 
   before(() => { 
     try {
       // remove console log from logger

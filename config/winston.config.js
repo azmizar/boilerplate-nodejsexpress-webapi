@@ -67,6 +67,8 @@ const logger = winston.createLogger({
   exitOnError: false
 });
 
+
+
 /**
  * Avoid console logger in production
  */

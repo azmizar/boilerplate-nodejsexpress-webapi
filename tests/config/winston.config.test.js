@@ -24,12 +24,13 @@ const path = require('path');
  */
 const expect = require('expect.js');
 const rll = require('read-last-line');
+const winston = require('winston');
 
 /**
  * App import
  */
-const CommonIDSvc = require('../common/ids.service');
-const logger = require('./winston.config');
+const CommonIDSvc = require('../../common/ids.service');
+const logger = require('../../config/winston.config');
 
 describe('Testing LOGGER', () => { 
 
@@ -60,21 +61,5 @@ describe('Testing LOGGER', () => {
     // test it
     expect(logPathStat.isFile()).to.be(true);
     done();
-  });
-
-  it('should add log into log file', (done) => { 
-    let logLine = 'Adding mocha test line';
-    logger.logInfo('MOCHA', MODULENAME, 'MochaTest', logLine);
-
-    // read the last line
-    rll.read(_logPath, 1).then((lines) => { 
-      if (lines.indexOf(logLine) >= 0) {
-        done();
-      } else { 
-        done('Last line does not contain the expected string');
-      }
-    }).catch((err) => { 
-      done(err);
-    });
   });
 });

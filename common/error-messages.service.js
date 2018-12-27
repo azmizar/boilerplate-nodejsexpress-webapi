@@ -80,34 +80,36 @@ loadErrors();
  * @param {String} errDetails ErrorDetails
  */
 function getErrorInformation(errNum, errMsg, errDetails) {
+  const taskName = 'getErrorInformation()';
+
   try {
     // find errInfo based on error number
-    let newErr = null;
+    let newErrInfo = null;
     let errInfo = _.find(_errorMessages, { "errorNumber": errNum });
         
     if (errInfo) {
       // found it - check if we can override message
-      newErr = errInfo.clone();
+      newErrInfo = errInfo.clone();
 
       if (errInfo.canOverrideMessage) {
         if (errMsg) {
-          newErr.errorMessage = errMsg;
+          newErrInfo.errorMessage = errMsg;
         }
 
         if (errDetails) {
-          newErr.errorDetails = errDetails;
+          newErrInfo.errorDetails = errDetails;
         }
       }
     } else {
       // not found - return errorNumber = 1 which is reserved for error number not found
-      newErr = getErrorInformation(1, `Error number ${ errNum } is not found`, null);
+      newErrInfo = getErrorInformation(1, `Error number ${ errNum } is not found`, null);
 
       // to avoid infinite loop - check if the errNum = 1 - then just throw an exception with default information
-      if ((!newErr) && (errNum === 1)) {
-        newErr = new AppError(`Error number ${ errNum } is not found`);
+      if ((!newErrInfo) && (errNum === 1)) {
+        let newErr = new AppError(`Error number ${ errNum } is not found`);
         newErr.appError(new ErrorMessageModel({
           "errorNumber": 1,
-          "errorMessage": "Error number not found",
+          "errorMessage": `Error number ${ errNum } is not found`,
           "errorDetails": "Reserved error number 1 does not exist",
           "category": "GENERAL",
           "subcategory": "RESERVED",
@@ -120,12 +122,9 @@ function getErrorInformation(errNum, errMsg, errDetails) {
     }
 
     // return only if errNum exists in our collection
-    return newErr;
+    return newErrInfo;
   } catch (e) {
-    if (!(e instanceof AppError)) {
-
-    }
-    
+    AppError.setModuleAndTaskForError(e, MODULENAME, taskName);
     throw e;
   }
 }

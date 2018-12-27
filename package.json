@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "devpcmode": "nodemon server.js DEVPCMODE",
-    "test": "mocha --recursive './{,!(node_modules)/**}/*.test.js'"
+    "test": "mocha --recursive tests/"
   },
   "repository": {
     "type": "git",
