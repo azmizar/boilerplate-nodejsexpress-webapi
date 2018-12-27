@@ -142,6 +142,8 @@ if (require.main === module) {
     _server.close();
   };
 
-  module.exports.port = app.get('port');
+  module.exports.port = () => {
+    return app.get('port');
+  };
 }
 
