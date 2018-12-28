@@ -1,7 +1,7 @@
 /***************************************
  * Test script error messages configurations
  ***************************************/
-const MODULENAME = 'TestErrorMessagesConfig';
+const MODULENAME = 'TestAppErrorClass';
 
 /**
  * Startup script
