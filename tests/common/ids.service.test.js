@@ -1,7 +1,7 @@
 /***************************************
  * Test script IDs service
  ***************************************/
-const MODULENAME = 'TestErrorMessagesConfig';
+const MODULENAME = 'TestIDsService';
 
 /**
  * Startup script
