@@ -26,6 +26,8 @@ const http = require('http');
 const logger = require('@root/config/winston.config');
 const app = require('@root/app');
 
+const AppError = require('./common/apperror.class');
+
 /**
  * Internal variables
  */
@@ -51,7 +53,11 @@ function normalizePort(val) {
     return port;
   }
 
-  throw new Error(`Invalid port value: ${val}`);
+  // throw error since port number is not valid
+  let newErr = new AppError(`Invalid port value: ${ val }`);
+  newErr.setModuleAndTask(MODULENAME, taskName);
+
+  throw newErr;
 }
 
 /**
@@ -82,6 +88,8 @@ function onError(error) {
         throw error;
     }
   } catch (e) {
+    AppError.setModuleAndTaskForError(e, MODULENAME, taskName);
+
     logger.logError(_serverUniqueID, MODULENAME, taskName, e);
     logger.logInfo(_serverUniqueID, MODULENAME, taskName, 'Exiting server due to error');
 
@@ -123,6 +131,8 @@ function startServer() {
     _server.on('error', onError);
     _server.on('listening', onListening);
   } catch (e) {
+    AppError.setModuleAndTaskForError(e, MODULENAME, taskName);
+
     logger.logError(_serverUniqueID, MODULENAME, taskName, e);
     logger.logInfo(_serverUniqueID, MODULENAME, taskName, 'Exiting server due to unexpected error');
 

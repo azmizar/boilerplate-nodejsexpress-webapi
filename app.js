@@ -28,12 +28,13 @@ const app = express();
  */
 const CommonIDsSvc = require('@root/common/ids.service'); 
 const ErrorMsgsSvc = require('@root/common/error-messages.service');
+
 const logger = require('@root/config/winston.config');
 
 const APIResponseModel = require('@root/common-models/response.model');
 const TaskModel = require('@root/common-models/task.model');
 
-const AppError = require('@root/common/apperror.class');
+const AppError = require('./common/apperror.class');
 
 /**
  * Internal variables
@@ -80,6 +81,8 @@ function initApp() {
     initCatchAllRoute();
     initErrorRoute();
   } catch (e) {
+    AppError.setModuleAndTaskForError(e, MODULENAME, taskName);
+    
     logger.logError(_serverUniqueID, MODULENAME, taskName, e);
     logger.logInfo(_serverUniqueID, MODULENAME, taskName, 'Exiting server due to error during initializing app');
 

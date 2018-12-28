@@ -20,8 +20,12 @@ const moment = require('moment');
  * App imports
  */
 const CommonIDsSvc = require('@root/common/ids.service');
-const APIResponseMetaDataModel = require('@root/common-models/metadata.model');
+
 const logger = require('@root/config/winston.config');
+
+const APIResponseMetaDataModel = require('@root/common-models/metadata.model');
+
+const AppError = require('../common/apperror.class');
 
 /**
  * HTTP middleware to handle initializing request execution
@@ -58,6 +62,8 @@ module.exports = function(req, res, next) {
     // pass to next
     next();
   } catch (e) {
+    AppError.setModuleAndTaskForError(e, MODULENAME, taskName);
+    
     logger.logError(req.reqUniqueID, MODULENAME, taskName, e);
     next(e);
   }
