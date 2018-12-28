@@ -11,6 +11,11 @@ const MODULENAME = 'CommonFindService';
 const _ = require('lodash');
 
 /**
+ * App imports
+ */
+const AppError = require('./apperror.class');
+
+/**
  * Search for items in the list if it is the same or is part of the item
  * @param {Array} list Array or list of items to search in
  * @param {Object} item Item to search for
@@ -42,6 +47,7 @@ function existInList(list, item, exactMatch) {
 
     return index;
   } catch (e) {
+    AppError.setModuleAndTaskForError(e, MODULENAME, taskName);
     throw e;
   }
 }

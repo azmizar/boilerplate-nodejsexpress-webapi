@@ -63,6 +63,8 @@ function loadErrors() {
 
     logger.logInfo(process.env.SERVERUNIQUEID, MODULENAME, taskName, `Loaded ${ _errorMessages.length } error messages`);
   } catch (e) {
+    AppError.setModuleAndTaskForError(e, MODULENAME, taskName);
+    
     logger.logError(process.env.SERVERUNIQUEID, MODULENAME, taskName, e);
     logger.logInfo(process.env.SERVERUNIQUEID, MODULENAME, taskName, 'Exiting server due to error in loading error messages');
 
@@ -107,6 +109,7 @@ function getErrorInformation(errNum, errMsg, errDetails) {
       // to avoid infinite loop - check if the errNum = 1 - then just throw an exception with default information
       if ((!newErrInfo) && (errNum === 1)) {
         let newErr = new AppError(`Error number ${ errNum } is not found`);
+
         newErr.appError(new ErrorMessageModel({
           "errorNumber": 1,
           "errorMessage": `Error number ${ errNum } is not found`,
@@ -116,6 +119,8 @@ function getErrorInformation(errNum, errMsg, errDetails) {
           "errorLevel": "ERROR",
           "canOverrideMessage": true
         }));
+
+        newErr.setModuleAndTask(MODULENAME, taskName);
 
         throw newErr;
       }

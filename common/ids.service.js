@@ -26,6 +26,7 @@ const uuidv4 = require('uuid/v4');
  * App imports
  */
 const logger = require('@root/config/winston.config');
+const AppError = require('./apperror.class');
 
 /**
  * Internal variables
@@ -59,7 +60,12 @@ function init() {
     hash.update(os.hostname());
     _serverNameHash = hash.digest('base64');
   } catch (e) {
+    AppError.setModuleAndTaskForError(e, MODULENAME, taskName);
+
     logger.logError(process.env.SERVERUNIQUEID, MODULENAME, taskName, e);
+    logger.logInfo(process.env.SERVERUNIQUEID, MODULENAME, taskName, 'Exiting server due to error in initializing IDs');
+
+    process.exit(1);
   }
 }
 
