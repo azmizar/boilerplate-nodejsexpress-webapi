@@ -19,7 +19,7 @@
     "Standard"
   ],
   "author": "Azmizar Ujang",
-  "license": "ISC",
+  "license": "GPL-3.0-or-later",
   "bugs": {
     "url": "https://github.com/azmizar/boilerplate-nodejsexpress-webapi/issues"
   },
